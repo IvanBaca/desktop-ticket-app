@@ -1,0 +1,26 @@
+{
+  "name": "desktop-ticket-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanBaca/desktop-ticket-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvanBaca/desktop-ticket-app/issues"
+  },
+  "homepage": "https://github.com/IvanBaca/desktop-ticket-app#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "electron": "^15.2.0",
+    "electron-reload": "^2.0.0-alpha.1",
+    "mysql": "^2.18.1"
+  }
+}
