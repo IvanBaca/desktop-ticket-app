@@ -15,8 +15,8 @@ const connection = createConnection({
     }
 })*/
 
-function generalQuey(quey){
-    connection.query(quey, (err, result, fields)=>{
+function generalQuey(quey, params){
+    connection.query(quey, params, (err, result, fields)=>{
         if(err){
             return console.log(err);
         }
