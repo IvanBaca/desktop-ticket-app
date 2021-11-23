@@ -1,7 +1,8 @@
-const {BrowserWindow} = require('electron')
-const {app} = require('electron')
+const { app, BrowserWindow} = require('electron')
+const { path } = require('path')
+const { connection } = require('./db-connection')
 
-let window
+let window;
 
 function createWindow() {
     window = new BrowserWindow({
@@ -10,15 +11,16 @@ function createWindow() {
         minWidth: 600,
         minHeight: 400,
         webPreferences: {
-            nodeIntegration: true
+            enableRemoteModule: true,
+            nodeIntegration: true,
+            contextIsolation: false
         }
     })
     // window.removeMenu();
-    window.loadFile('src/html/index.html');
+    window.loadFile('./src/html/ticket-view.html');
     window.maximize();
 }
 
-require('electron-reload')(__dirname);
-
-app.allowRendererProcessReuse = false;
-app.whenReady().then(createWindow);
+module.exports = {
+    createWindow
+  };
