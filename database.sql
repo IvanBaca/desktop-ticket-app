@@ -16,7 +16,7 @@ firstLastName varchar(20),
 secondLastName varchar (20),
 username varchar (20) unique,
 salt char(5),
-pwdHash int,
+pwdHash char(100),
 companyId int,
 primary key (uploaderId),
 foreign key (companyId) references Companies(companyId)) engine=InnoDB;
@@ -32,7 +32,6 @@ companyId int,
 primary key (couponId),
 foreign key (companyId) references Companies(companyId)) engine=InnoDB;
 
-drop procedure generateHash;
 delimiter $$
 create procedure generateHash(id int, pass text)
 begin
@@ -49,15 +48,20 @@ create function loginConfirmation(id int, pass text) returns boolean
 begin
     declare conf boolean default false;
     declare saltVal char(5);
-    declare hashVal int; 
-    declare calculatedHash int;
+    declare hashVal char(100); 
+    declare calculatedHash char(100);
     
     select salt, pwdHash into saltVal, hashVal from uploaders where uploaderId = id;
-    set calculatedHash = password(concat(pass, salt));
+    set calculatedHash = password(concat(pass, saltVal));
     if (calculatedHash = hashVal) then
 		set conf = true;
+	else
+		set conf = false;
     end if;
     
     return conf;
 end
 $$
+
+call generateHash(1, "mypass1");
+select loginConfirmation(1, "mypass1");
