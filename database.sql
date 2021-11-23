@@ -4,29 +4,60 @@ create database desktopticketapp;
 use desktopticketapp;
 
 create table Companies(
-companyid int auto_increment,
+companyId int auto_increment,
 name varchar (80) unique,
 service varchar(20),
-primary key (companyid)) engine=InnoDB;
+primary key (companyId)) engine=InnoDB;
 
 create table Uploaders(
-uploaderid int auto_increment,
+uploaderId int auto_increment,
 name varchar (20),
 firstLastName varchar(20),
-SecondLAstName varchar (20),
+secondLastName varchar (20),
 username varchar (20) unique,
+salt char(5),
 pwdHash int,
-companyid int,
-primary key (uploaderid),
-foreign key (companyid) references Companies(companyid)) engine=InnoDB;
+companyId int,
+primary key (uploaderId),
+foreign key (companyId) references Companies(companyId)) engine=InnoDB;
 
 create table Coupons(
-couponid int auto_increment,
+couponId int auto_increment,
 restrictions varchar (200),
 title varchar(50),
 info varchar (200),
 discountPercentage int,
 expiration date,
-companyid int,
-primary key (couponid),
-foreign key (companyid) references Companies(companyid)) engine=InnoDB;
+companyId int,
+primary key (couponId),
+foreign key (companyId) references Companies(companyId)) engine=InnoDB;
+
+drop procedure generateHash;
+delimiter $$
+create procedure generateHash(id int, pass text)
+begin
+	declare saltVal char(5);
+    set saltVal = substr(md5(rand()), 1, 5);
+    update uploaders set salt = saltVal where uploaderId = id;
+	update uploaders set pwdhash = password(concat(pass, saltVal)) where uploaderId = id;
+end
+$$
+
+drop function loginConfirmation;
+delimiter $$
+create function loginConfirmation(id int, pass text) returns boolean
+begin
+    declare conf boolean default false;
+    declare saltVal char(5);
+    declare hashVal int; 
+    declare calculatedHash int;
+    
+    select salt, pwdHash into saltVal, hashVal from uploaders where uploaderId = id;
+    set calculatedHash = password(concat(pass, salt));
+    if (calculatedHash = hashVal) then
+		set conf = true;
+    end if;
+    
+    return conf;
+end
+$$
