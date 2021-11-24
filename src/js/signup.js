@@ -38,15 +38,19 @@ async function insertUser() {
         userQueyValues.push(queyValues[i])
     }
     //Database input
-    //conn.generalQuey("INSERT INTO companies (name, service) VALUES (?,?)", companyQueyValues);
-    let compId = await conn.generalQuey("SELECT MAX(companyId) FROM companies ORDER BY companyId desc LIMIT 1");
-    userQueyValues.push(compId[0].companyid);
+    await conn.generalQuey("INSERT INTO companies (name, service) VALUES (?,?)", companyQueyValues);
+    let compId = await conn.generalQuey("SELECT MAX(companyId) AS id FROM companies ORDER BY companyId desc LIMIT 1");
+    userQueyValues.push(compId[0].id);
     await conn.generalQuey("INSERT INTO uploaders (name, firstLastName, secondLastName, username, companyId) VALUES (?,?,?,?,?)", userQueyValues);
     let uplId = await conn.generalQuey("SELECT uploaderId FROM uploaders ORDER BY uploaderId desc LIMIT 1");
     console.log(uplId);
     let uplQueyArr = [uplId[0].uploaderId, queyValues[4]];
     await conn.generalQuey(`call generateHash(?,?)`, uplQueyArr);
-
+    alert("Successful operation");
+    //Screen clear
+    for (let i = 0; i < formFields.length; i++) {
+        formFields[i].value = "";
+    }
 }
 
 inputButton.addEventListener("click", insertUser);
