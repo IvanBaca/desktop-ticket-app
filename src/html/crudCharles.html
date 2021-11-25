@@ -58,15 +58,15 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de expiración</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Small"  placeholder="aaaa-mm-dd" aria-describedby="inputGroup-sizing-sm">
                       </div>
                       <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroup-sizing-sm">Porcentaje de descuento</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Small"  placeholder="%" aria-describedby="inputGroup-sizing-sm">
                       </div>
-                      <button type="button" class="btn btn-success">Agregar Ticket</button>
+                      <button type="button" class="btn btn-success" id="addTicket">Agregar Ticket</button>
                     </div>
                   </div>
                 </div>
@@ -82,7 +82,18 @@
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Nombre de Ticket
                         </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Prueba</a>
+                          <a class="dropdown-item" href="#">Prueba2</a>
                         </div>
+                      </div>
+                      <br><div>
+                        <select name="Prueba" id="">
+                          <Option>Hola</Option>
+                          <Option>Hola</Option>
+                          <Option>Hola</Option>
+                        </select>
+                      </div>
                       <br><div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroup-sizing-sm">Título</span>
@@ -105,15 +116,15 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de expiración</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Small" placeholder="aaaa-mm-dd" aria-describedby="inputGroup-sizing-sm">
                       </div>
                       <div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroup-sizing-sm">Porcentaje de descuento</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input type="text" class="form-control" aria-label="Small" placeholder="%" aria-describedby="inputGroup-sizing-sm">
                       </div>
-                      <button type="button" class="btn btn-primary">Editar Ticket</button>
+                      <button type="button" class="btn btn-primary" id="editTicket">Editar Ticket</button>
                     </div>
                   </div>
                 </div>
@@ -130,31 +141,19 @@
                           Nombre de Ticket
                         </button>
                         </div>
-                      <br><div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="inputGroup-sizing-sm">Título</span>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                      </div>
-                      <div class="input-group input-group-sm mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="inputGroup-sizing-sm">Información</span>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                      </div>
-              
-                      <button type="button" class="btn btn-danger">Eliminar Ticket</button>
+                      <br><button type="button" class="btn btn-danger" id="deleteTicket">Eliminar Ticket</button>
                     </div>
                   </div>
                 </div>
               </div>
         </div>
-    //Para volver a la página principal    
+    <!--Para volver a la página principal-->    
     <div class="row">
       <a href="ticket-view.html">Volver</a>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script type="text/javascript" src="./../bootstrap/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="./../js/crudcharles.js"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
