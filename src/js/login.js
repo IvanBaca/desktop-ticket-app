@@ -1,4 +1,6 @@
 const conn = require('./../../db-connection');
+const Store = require('electron-store')
+const store = new Store();
 
 var formFields = document.getElementsByClassName("form-control");
 var inputButton = document.getElementById("inputButton");
@@ -24,6 +26,7 @@ async function login() {
     let res = await conn.generalQuey(`SELECT loginConfirmation(?,?) as res`, queyValues);
     console.log(res);
     if(res[0].res){
+        alert("Successfully logged in");
         //Load corresponding file
         console.log("Success");
     } else {
@@ -31,5 +34,8 @@ async function login() {
         formFields[1].value = "";
     }
 }
+
+//Test
+store.set("test", "let's fucking go")
 
 inputButton.addEventListener("click", login);
