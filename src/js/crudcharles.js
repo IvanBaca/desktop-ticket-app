@@ -51,7 +51,7 @@ async function editTickets() {
     } else {
         var compid = await conn.generalQuey("SELECT companyid from companies limit 1");
         ticketsEdit.push(compid[0].companyid);
-        await conn.generalQuey("update coupons set title=?, info=?, restrictions=?, expiration=?, discountPercentage=?, companyid=? where couponid='7'", ticketsEdit);
+        await conn.generalQuey("update coupons set title=?, info=?, restrictions=?, expiration=?, discountPercentage=?, companyid=? where couponid='4'", ticketsEdit);
         console.log(ticketsEdit);
         alert("Modificación correcta!!!");
     }
@@ -66,9 +66,10 @@ async function deleteTickets() {
         return;
     } else {
         //var compid = await conn.generalQuey("SELECT companyid from companies limit 1");
-        ticketsDelete.push(7);
-        await conn.generalQuey("delete from coupons where couponid='?'", ticketsDelete);
-        console.log(ticketsDelete);
+        ticketsDelete.push(4);
+        //await conn.generalQuey("delete from coupons where couponid='?'", ticketsDelete);
+        //console.log(ticketsDelete);
+        console.log(await conn.generalQuey("select title from coupons where couponid='?'", ticketsDelete));
         alert("A chingar su madre el Ticket");
     }
 }
