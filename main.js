@@ -1,6 +1,8 @@
 const { app, BrowserWindow} = require('electron')
 const { path } = require('path')
 const { connection } = require('./db-connection')
+const Store = require('electron-store')
+Store.initRenderer();
 
 let window;
 

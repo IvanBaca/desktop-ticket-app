@@ -1,4 +1,6 @@
 const conn = require('./../../db-connection');
+const Store = require('electron-store')
+const store = new Store();
 
 var formFields = document.getElementsByClassName("form-control");
 var inputButton = document.getElementById("inputButton");
@@ -52,5 +54,7 @@ async function insertUser() {
         formFields[i].value = "";
     }
 }
+
+console.log(store.get('test'));
 
 inputButton.addEventListener("click", insertUser);

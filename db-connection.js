@@ -7,8 +7,6 @@ const connection = createConnection({
     database: 'desktopticketapp'
 });
 
-//This is a comment
-
 /*connection.connect(function(error){
     if(error){
         throw error;
