@@ -51,7 +51,7 @@ async function editTickets() {
     } else {
         var compid = await conn.generalQuey("SELECT companyid from companies limit 1");
         ticketsEdit.push(compid[0].companyid);
-        await conn.generalQuey("update coupons set title=?, info=?, restrictions=?, expiration=?, discountPercentage=?, companyid=? where couponid='4'", ticketsEdit);
+        await conn.generalQuey("update coupons set title=?, info=?, restrictions=?, expiration=?, discountPercentage=?, companyid=? where couponid='9'", ticketsEdit);
         console.log(ticketsEdit);
         alert("Modificación correcta!!!");
     }
@@ -72,6 +72,18 @@ async function deleteTickets() {
         console.log(await conn.generalQuey("select title from coupons where couponid='?'", ticketsDelete));
         alert("A chingar su madre el Ticket");
     }
+}
+
+async function funcionVer() {
+    let cupon=[];
+    cupon=await conn.generalQuey("select * from coupons where couponid='9'");
+    console.log(await conn.generalQuey("select * from coupons where couponid='8'"));
+    document.getElementById("Test").innerHTML=cupon[0].title;
+    document.getElementById("title").placeholder=cupon[0].title;
+    document.getElementById("info").placeholder=cupon[0].info;
+    document.getElementById("restrictions").placeholder=cupon[0].restrictions;
+    document.getElementById("date").placeholder=cupon[0].expiration;
+    document.getElementById("percentage").placeholder=cupon[0].discountPercentage;
 }
 
 addTicketBtn.addEventListener("click", addTickets);
