@@ -65,25 +65,35 @@ async function deleteTickets() {
         alert("Qué borro pendejo???");
         return;
     } else {
-        //var compid = await conn.generalQuey("SELECT companyid from companies limit 1");
-        ticketsDelete.push(4);
-        //await conn.generalQuey("delete from coupons where couponid='?'", ticketsDelete);
-        //console.log(ticketsDelete);
-        console.log(await conn.generalQuey("select title from coupons where couponid='?'", ticketsDelete));
+        ticketsDelete.push(8);
+        await conn.generalQuey("delete from coupons where couponid='?'", ticketsDelete);
         alert("A chingar su madre el Ticket");
     }
 }
 
 async function funcionVer() {
     let cupon=[];
-    cupon=await conn.generalQuey("select * from coupons where couponid='9'");
+    let id=[];
+    id.push(idTicket);
+    cupon=await conn.generalQuey("select * from coupons where couponid='?'",idTicket);
     console.log(await conn.generalQuey("select * from coupons"));
-    document.getElementById("Test").innerHTML=cupon[0].title;
     document.getElementById("title").placeholder=cupon[0].title;
     document.getElementById("info").placeholder=cupon[0].info;
     document.getElementById("restrictions").placeholder=cupon[0].restrictions;
     document.getElementById("date").placeholder=cupon[0].expiration;
     document.getElementById("percentage").placeholder=cupon[0].discountPercentage;
+}
+
+async function nombre(){
+    document.getElementById("Valores").innerHTML = '';
+    var values = await conn.generalQuey("select title from coupons");
+    values.forEach(function(e){
+        insertarCoupones(e);
+    });
+}
+
+async function insertarCoupones(valus){
+    document.getElementById("Valores").innerHTML += '<a class="dropdown-item" href="#">'+valus.title+'</a>';   
 }
 
 addTicketBtn.addEventListener("click", addTickets);
