@@ -7,6 +7,7 @@ const discountdes = document.getElementById("DescuentoDES");
 const dateasc = document.getElementById("FechaASC");
 const datedes = document.getElementById("FechaDES");
 
+
 async function insertarCoupones(valus){
     document.getElementById("kupon").innerHTML +=
     '<div class="col text-center d-flex justify-content-center pt-3">'+
@@ -73,12 +74,15 @@ async function bynamedes(){
     });
 }
 
+
+
 dateasc.addEventListener("click", bydateasc);
 datedes.addEventListener("click", bydatedes);
 discountasc.addEventListener("click", bydiscountasc);
 discountdes.addEventListener("click", bydiscountdes);
 nameasc.addEventListener("click", bynameasc);
 namedes.addEventListener("click", bynamedes);
+
 
 
 
