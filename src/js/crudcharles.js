@@ -77,7 +77,7 @@ async function deleteTickets() {
 async function funcionVer() {
     let cupon=[];
     cupon=await conn.generalQuey("select * from coupons where couponid='9'");
-    console.log(await conn.generalQuey("select * from coupons where couponid='8'"));
+    console.log(await conn.generalQuey("select * from coupons"));
     document.getElementById("Test").innerHTML=cupon[0].title;
     document.getElementById("title").placeholder=cupon[0].title;
     document.getElementById("info").placeholder=cupon[0].info;
