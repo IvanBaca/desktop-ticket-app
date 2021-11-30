@@ -4,7 +4,7 @@ var formFields = document.getElementsByClassName("form-control");
 var addTicketBtn = document.getElementById("addTicket");
 var editTicketBtn = document.getElementById("editTicket");
 var deleteTicketBtn = document.getElementById("deleteTicket");
-var getName = document.getElementById("Nonvre");
+var axellDisplay = document.getElementById("Axell");
 
 async function addTickets() {
     //Variable declaration
@@ -72,21 +72,8 @@ async function deleteTickets() {
     }
 }
 
-async function funcionVer(atsel) {
-    let cupon=[];
-    var perrito = document.getElementById(atsel);
-    console.log(perrito);
-    cupon=await conn.generalQuey("select * from coupons where title=?", perrito);
-    console.log(await conn.generalQuey("select * from coupons"));
-    document.getElementById("title").placeholder=cupon[0].title;
-    document.getElementById("info").placeholder=cupon[0].info;
-    document.getElementById("restrictions").placeholder=cupon[0].restrictions;
-    document.getElementById("date").placeholder=cupon[0].expiration;
-    document.getElementById("percentage").placeholder=cupon[0].discountPercentage;
-}
-
 async function nombre(){
-    document.getElementById("Valores").innerHTML = '';
+    document.getElementById("Axell").innerHTML = '';
     var values = await conn.generalQuey("select * from coupons");
     values.forEach(function(e){
         insertarCoupones(e);
@@ -94,11 +81,23 @@ async function nombre(){
 }
 
 async function insertarCoupones(valus){
-    document.getElementById("Valores").innerHTML += '<a class="dropdown-item" value="'+valus.title+'" onClick="funcionVer('+valus.title+')" href="#">'+valus.title+'</a>';
-    console.log(valus.couponId + " " + valus.title);
+    document.getElementById("Axell").innerHTML += '<option>'+valus.title+'</option>';
+
+}
+
+async function funcionXavier(){
+    var selectBox = document.getElementById("Axell");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    let cupon=[];
+    cupon=await conn.generalQuey("select * from coupons where title=?",selectedValue);
+    document.getElementById("title").placeholder=cupon[0].title;
+    document.getElementById("info").placeholder=cupon[0].info;
+    document.getElementById("restrictions").placeholder=cupon[0].restrictions;
+    document.getElementById("date").placeholder=cupon[0].expiration;
+    document.getElementById("percentage").placeholder=cupon[0].discountPercentage;
 }
 
 addTicketBtn.addEventListener("click", addTickets);
 editTicketBtn.addEventListener("click", editTickets);
 deleteTicketBtn.addEventListener("click", deleteTickets);
-getName.addEventListener("click",nombre);
+axellDisplay.addEventListener("click",nombre);
