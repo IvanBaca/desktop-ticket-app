@@ -4,6 +4,7 @@ var formFields = document.getElementsByClassName("form-control");
 var addTicketBtn = document.getElementById("addTicket");
 var editTicketBtn = document.getElementById("editTicket");
 var deleteTicketBtn = document.getElementById("deleteTicket");
+var getName = document.getElementById("Nonvre");
 
 async function addTickets() {
     //Variable declaration
@@ -71,11 +72,11 @@ async function deleteTickets() {
     }
 }
 
-async function funcionVer() {
+async function funcionVer(atsel) {
     let cupon=[];
-    let id=[];
-    id.push(idTicket);
-    cupon=await conn.generalQuey("select * from coupons where couponid='?'",idTicket);
+    var perrito = document.getElementById(atsel);
+    console.log(perrito);
+    cupon=await conn.generalQuey("select * from coupons where title=?", perrito);
     console.log(await conn.generalQuey("select * from coupons"));
     document.getElementById("title").placeholder=cupon[0].title;
     document.getElementById("info").placeholder=cupon[0].info;
@@ -86,16 +87,18 @@ async function funcionVer() {
 
 async function nombre(){
     document.getElementById("Valores").innerHTML = '';
-    var values = await conn.generalQuey("select title from coupons");
+    var values = await conn.generalQuey("select * from coupons");
     values.forEach(function(e){
         insertarCoupones(e);
     });
 }
 
 async function insertarCoupones(valus){
-    document.getElementById("Valores").innerHTML += '<a class="dropdown-item" href="#">'+valus.title+'</a>';   
+    document.getElementById("Valores").innerHTML += '<a class="dropdown-item" value="'+valus.title+'" onClick="funcionVer('+valus.title+')" href="#">'+valus.title+'</a>';
+    console.log(valus.couponId + " " + valus.title);
 }
 
 addTicketBtn.addEventListener("click", addTickets);
 editTicketBtn.addEventListener("click", editTickets);
 deleteTicketBtn.addEventListener("click", deleteTickets);
+getName.addEventListener("click",nombre);

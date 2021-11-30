@@ -17,8 +17,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#">Tickets</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                  <button class="navbar-text" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   </button>
                 </div>
               </nav>
@@ -72,7 +71,7 @@
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button collapsed" type="button" onclick="funcionVer()" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                       Editar Ticket
                     </button>
                   </h2>
@@ -81,16 +80,15 @@
                       <br><form>
                         <div class="container-fluid col justify-content-end">
                           <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" onclick="nombre()" style="width:10rem;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="btn btn-secondary dropdown-toggle" id="Nonvre" style="width:10rem;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Nombre
                             </a>
-                            <div class="dropdown-menu" id="Valores" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="#"></a>
+                            <div class="dropdown-menu" id="Valores" onclick="funcionVer()" aria-labelledby="dropdownMenuLink">
+
                             </div>
                           </div>
                         </div>
                         </form>
-                      <br>
                       <br><div class="input-group input-group-sm mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text">Título</span>
@@ -134,21 +132,7 @@
                   <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <br><form>
-                        <div class="container-fluid col justify-content-end">
-                          <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle" onclick="nombre()" style="width:10rem;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Nombre
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <a class="dropdown-item" href="#" id="NombreASC">Name ASC</a>
-                              <a class="dropdown-item" href="#" id="NombreDES">Name DES</a>
-                              <a class="dropdown-item" href="#" id="DescuentoASC">Discount ASC</a>
-                              <a class="dropdown-item" href="#" id="DescuentoDES">Discount DES</a>
-                              <a class="dropdown-item" href="#" id="FechaASC">Upload Date ASC</a>
-                              <a class="dropdown-item" href="#" id="FechaDES">Upload Date DES</a>
-                            </div>
-                          </div>
-                        </div>
+                        
                         </form>
                       <div class="dropdown">
                         </div>
