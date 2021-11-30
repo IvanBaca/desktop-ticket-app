@@ -5,6 +5,8 @@ var addTicketBtn = document.getElementById("addTicket");
 var editTicketBtn = document.getElementById("editTicket");
 var deleteTicketBtn = document.getElementById("deleteTicket");
 var axellDisplay = document.getElementById("Axell");
+var axellDelete = document.getElementById("AxellDelete");
+var borrar = "";
 
 async function addTickets() {
     //Variable declaration
@@ -60,20 +62,14 @@ async function editTickets() {
 
 async function deleteTickets() {
     //Variable declaration
-    let emptyFields = true;
-    let ticketsDelete = [];
-    if (emptyFields==false) {
-        alert("Qué borro pendejo???");
-        return;
-    } else {
-        ticketsDelete.push(8);
-        await conn.generalQuey("delete from coupons where couponid='?'", ticketsDelete);
-        alert("A chingar su madre el Ticket");
-    }
+    console.log(borrar);
+    await conn.generalQuey("delete from coupons where title=?", borrar);
+    alert("A chingar su madre el Ticket");
 }
 
 async function nombre(){
     document.getElementById("Axell").innerHTML = '';
+    document.getElementById("AxellDelete").innerHTML = '';
     var values = await conn.generalQuey("select * from coupons");
     values.forEach(function(e){
         insertarCoupones(e);
@@ -82,13 +78,15 @@ async function nombre(){
 
 async function insertarCoupones(valus){
     document.getElementById("Axell").innerHTML += '<option>'+valus.title+'</option>';
-
+    document.getElementById("AxellDelete").innerHTML += '<option>'+valus.title+'</option>';
 }
 
 async function funcionXavier(){
     var selectBox = document.getElementById("Axell");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
     let cupon=[];
+    console.log(selectedValue);
+    console.log("Test");
     cupon=await conn.generalQuey("select * from coupons where title=?",selectedValue);
     document.getElementById("title").placeholder=cupon[0].title;
     document.getElementById("info").placeholder=cupon[0].info;
@@ -97,7 +95,15 @@ async function funcionXavier(){
     document.getElementById("percentage").placeholder=cupon[0].discountPercentage;
 }
 
+async function funcionXavier1(){
+    var selectBox = document.getElementById("AxellDelete");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    borrar = selectedValue;
+    console.log(borrar);
+}
+
 addTicketBtn.addEventListener("click", addTickets);
 editTicketBtn.addEventListener("click", editTickets);
 deleteTicketBtn.addEventListener("click", deleteTickets);
 axellDisplay.addEventListener("click",nombre);
+axellDelete.addEventListener("click",nombre);
