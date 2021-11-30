@@ -8,6 +8,7 @@ const dateasc = document.getElementById("FechaASC");
 const datedes = document.getElementById("FechaDES");
 
 
+
 async function insertarCoupones(valus){
     document.getElementById("kupon").innerHTML +=
     '<div class="col text-center d-flex justify-content-center pt-3">'+
@@ -25,6 +26,15 @@ async function insertarCoupones(valus){
   '</div>';
 }
 
+async function searchBar(ojo){
+    console.log(ojo);
+    document.getElementById("kupon").innerHTML = '';
+    var search  = "select * from coupons where title regexp '^" + ojo + "'";
+    var values = await conn.generalQuey(search);
+    values.forEach(function(e){
+        insertarCoupones(e);
+    });
+}
 
 async function bydateasc(){
     document.getElementById("kupon").innerHTML = '';

@@ -12,9 +12,14 @@
     <header>
       <div>
         <nav class="navbar navbar-light bg-light">
-          
+          <div class="container-fluid col">
+            <form class="d-flex">
+              <input class="form-control me-2" style="width: 25rem;" type="search" placeholder="Search" aria-label="Search" id="barValue">
+              <button class="btn btn-outline-success" onclick="searchBar(document.getElementById('barValue').value)" type="submit">Search</button>
+            </form>
+          </div>
           <form>
-          <div class="container-fluid col justify-content-end">
+          <div class="container-fluid col">
             <div class="dropdown show">
               <a class="btn btn-secondary dropdown-toggle" style="width:10rem;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Sort
@@ -31,6 +36,9 @@
             </div>
           </div>
           </form>
+          <div class="me-4">
+            <a href="login.html"><button type="button" class="btn btn-success">Iniciar Sesión</button></a>
+          </div>
         </nav> 
            
       </div>
