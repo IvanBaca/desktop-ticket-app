@@ -4,7 +4,7 @@ const { connection } = require('./db-connection')
 const Store = require('electron-store')
 Store.initRenderer();
 
-let window;
+var window;
 
 function createWindow() {
     window = new BrowserWindow({

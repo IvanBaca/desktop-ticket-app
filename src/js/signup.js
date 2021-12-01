@@ -53,6 +53,8 @@ async function insertUser() {
     for (let i = 0; i < formFields.length; i++) {
         formFields[i].value = "";
     }
+    //Redirection
+    window.location.assign(__dirname + "/login.html");
 }
 
 console.log(store.get('test'));

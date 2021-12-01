@@ -1,12 +1,15 @@
 const conn = require('./../../db-connection');
+const Store = require('electron-store')
+const store = new Store();
 
 var formFields = document.getElementsByClassName("form-control");
 var addTicketBtn = document.getElementById("addTicket");
 var editTicketBtn = document.getElementById("editTicket");
 var deleteTicketBtn = document.getElementById("deleteTicket");
-var axellDisplay = document.getElementById("Axell");
-var axellDelete = document.getElementById("AxellDelete");
-var borrar = "";
+var getName = document.getElementById("Nonvre");
+
+//Test
+console.log(store.get("upId"));
 
 async function addTickets() {
     //Variable declaration
@@ -62,32 +65,24 @@ async function editTickets() {
 
 async function deleteTickets() {
     //Variable declaration
-    console.log(borrar);
-    await conn.generalQuey("delete from coupons where title=?", borrar);
-    alert("A chingar su madre el Ticket");
+    let emptyFields = true;
+    let ticketsDelete = [];
+    if (emptyFields==false) {
+        alert("Qué borro pendejo???");
+        return;
+    } else {
+        ticketsDelete.push(8);
+        await conn.generalQuey("delete from coupons where couponid='?'", ticketsDelete);
+        alert("A chingar su madre el Ticket");
+    }
 }
 
-async function nombre(){
-    document.getElementById("Axell").innerHTML = '';
-    document.getElementById("AxellDelete").innerHTML = '';
-    var values = await conn.generalQuey("select * from coupons");
-    values.forEach(function(e){
-        insertarCoupones(e);
-    });
-}
-
-async function insertarCoupones(valus){
-    document.getElementById("Axell").innerHTML += '<option>'+valus.title+'</option>';
-    document.getElementById("AxellDelete").innerHTML += '<option>'+valus.title+'</option>';
-}
-
-async function funcionXavier(){
-    var selectBox = document.getElementById("Axell");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+async function funcionVer(atsel) {
     let cupon=[];
-    console.log(selectedValue);
-    console.log("Test");
-    cupon=await conn.generalQuey("select * from coupons where title=?",selectedValue);
+    var perrito = document.getElementById(atsel);
+    console.log(perrito);
+    cupon=await conn.generalQuey("select * from coupons where title=?", perrito);
+    console.log(await conn.generalQuey("select * from coupons"));
     document.getElementById("title").placeholder=cupon[0].title;
     document.getElementById("info").placeholder=cupon[0].info;
     document.getElementById("restrictions").placeholder=cupon[0].restrictions;
@@ -95,15 +90,20 @@ async function funcionXavier(){
     document.getElementById("percentage").placeholder=cupon[0].discountPercentage;
 }
 
-async function funcionXavier1(){
-    var selectBox = document.getElementById("AxellDelete");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-    borrar = selectedValue;
-    console.log(borrar);
+async function nombre(){
+    document.getElementById("Valores").innerHTML = '';
+    var values = await conn.generalQuey("select * from coupons");
+    values.forEach(function(e){
+        insertarCoupones(e);
+    });
+}
+
+async function insertarCoupones(valus){
+    document.getElementById("Valores").innerHTML += '<a class="dropdown-item" value="'+valus.title+'" onClick="funcionVer('+valus.title+')" href="#">'+valus.title+'</a>';
+    console.log(valus.couponId + " " + valus.title);
 }
 
 addTicketBtn.addEventListener("click", addTickets);
 editTicketBtn.addEventListener("click", editTickets);
 deleteTicketBtn.addEventListener("click", deleteTickets);
-axellDisplay.addEventListener("click",nombre);
-axellDelete.addEventListener("click",nombre);
+getName.addEventListener("click",nombre);

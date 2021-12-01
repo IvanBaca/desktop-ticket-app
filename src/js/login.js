@@ -26,16 +26,15 @@ async function login() {
     let res = await conn.generalQuey(`SELECT loginConfirmation(?,?) as res`, queyValues);
     console.log(res);
     if(res[0].res){
+        store.set("upId", userId[0].uploaderId);
         alert("Successfully logged in");
-        //Load corresponding file
-        console.log("Success");
+        window.location.assign(__dirname+"/crudCharles.html");
     } else {
         alert("Login information is incorrect");
         formFields[1].value = "";
     }
 }
 
-//Test
-store.set("test", "let's fucking go")
+console.log(__dirname)
 
 inputButton.addEventListener("click", login);
