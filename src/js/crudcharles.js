@@ -11,7 +11,7 @@ var axellDelete = document.getElementById("AxellDelete");
 var borrar = "";
 
 //Test
-console.log(store.get("upId"));
+//console.log(store.get("upId"));
 
 async function addTickets() {
     //Variable declaration
@@ -122,6 +122,6 @@ async function funcionXavier1(){
 
 addTicketBtn.addEventListener("click", addTickets);
 editTicketBtn.addEventListener("click", editTickets);
-getName.addEventListener("click",nombre);
+deleteTicketBtn.addEventListener("click", deleteTickets);
 axellDisplay.addEventListener("click",nombre);
 axellDelete.addEventListener("click",nombre); 
