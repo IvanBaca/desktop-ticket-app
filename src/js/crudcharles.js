@@ -11,7 +11,7 @@ var axellDelete = document.getElementById("AxellDelete");
 var borrar = "";
 
 //Test
-//console.log(store.get("upId"));
+console.log(store.get("compId"));
 
 async function addTickets() {
     //Variable declaration

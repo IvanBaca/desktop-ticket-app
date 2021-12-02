@@ -22,11 +22,13 @@ async function login() {
     //Check if user is allowed
     let queyValues = [formFields[0].value];
     let userId = await conn.generalQuey(`SELECT uploaderId FROM uploaders WHERE username = ?`, queyValues);
+    console.log(userId[0].uploaderId);
     queyValues = [userId[0].uploaderId, formFields[1].value];
     let res = await conn.generalQuey(`SELECT loginConfirmation(?,?) as res`, queyValues);
     console.log(res);
     if(res[0].res){
-        store.set("upId", userId[0].uploaderId);
+        let compId = await conn.generalQuey(`SELECT c.companyId FROM companies c INNER JOIN uploaders u ON c.companyId = u.companyId WHERE u.uploaderId = ?`,[userId[0].uploaderId])
+        store.set("compId", compId[0].companyId);
         alert("Successfully logged in");
         window.location.assign(__dirname+"/crudCharles.html");
     } else {
