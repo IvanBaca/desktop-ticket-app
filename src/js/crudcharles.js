@@ -20,8 +20,6 @@ var porcen = "";
 var porcenEmpty = "";
 var borrar = "";
 
-
-
 async function addTickets() {
     //Variable declaration
     let emptyFields = false;
