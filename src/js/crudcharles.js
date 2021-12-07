@@ -20,16 +20,7 @@ var porcen = "";
 var porcenEmpty = "";
 var borrar = "";
 
-//Test
-<<<<<<< Updated upstream
-console.log(store.get("compId"));
-=======
-<<<<<<< HEAD
-console.log(store.get("upId"));
-=======
-console.log(store.get("compId"));
->>>>>>> f6d5accbaa313b14fa5e86ebb02ba8b83b3e04d7
->>>>>>> Stashed changes
+
 
 async function addTickets() {
     //Variable declaration
