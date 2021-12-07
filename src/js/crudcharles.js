@@ -33,7 +33,7 @@ async function addTickets() {
         } 
     }
     if (emptyFields) {
-        alert("Inserte por favor todos los datos...");
+        alert("Please fill in every blank...");
     } else {
         //var compid = await conn.generalQuey("SELECT companyid from companies limit 1");
         var compid = store.get("upId");
@@ -44,7 +44,7 @@ async function addTickets() {
         for (let i = 0; i < 5; i++) {
             formFields[i].value = "";
         }
-        alert("Su ticket se ha registrado");
+        alert("Your ticket has been registered");
     }
 }
 
@@ -98,12 +98,12 @@ async function editTickets() {
     ticketsEdit.push(nameEmpty);
     console.log(ticketsEdit);
     await conn.generalQuey("update coupons set title=?, info=?, restrictions=?, expiration=?, discountPercentage=? where title=?", ticketsEdit);
-    alert("Su ticket ha sido Actualizado");
+    alert("Your ticket has been updated");
 }
 
 async function deleteTickets() {
     await conn.generalQuey("delete from coupons where title=?", borrar);
-    alert("El ticket "+borrar+" se ha eliminado");
+    alert("Ticket "+borrar+" has been deleted");
 }
 
 async function funcionVer(atsel) {
