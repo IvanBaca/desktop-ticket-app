@@ -4,6 +4,9 @@ const store = new Store();
 
 var formFields = document.getElementsByClassName("form-control");
 var addTicketBtn = document.getElementById("addTicket");
+var deleteTicketBtn = document.getElementById("deleteTicket");
+var nameUpdateSelect = document.getElementById("nameUpdateSelect");
+var nameUpdateSelect2 = document.getElementById("nameUpdateSelect2");
 
 //Test
 console.log(store.get("compId"));
@@ -50,12 +53,35 @@ async function addTickets() {
     }
 }
 
-async function editTickets() {
+//OTHER FUNCS
+async function updateNames() {
+    let info = await conn.generalQuey(`SELECT * FROM uploaders WHERE companyId = ?`, [store.get("compId")]);
+    nameUpdateSelect.innerHTML = "";
+    for (let i = 0; i < info.length; i++) {
+        nameUpdateSelect.innerHTML += `
+        <option value="${info[i].uploaderId}">${info[i].username}</option>
+        `
+    }
+}
 
+async function updateNames2() {
+    let info = await conn.generalQuey(`SELECT uploaderId, username FROM uploaders WHERE companyId = ?`, [store.get("compId")]);
+    nameUpdateSelect2.innerHTML = "";
+    for (let i = 0; i < info.length; i++) {
+        nameUpdateSelect2.innerHTML += `
+        <option value="${info[i].uploaderId}">${info[i].username}</option>
+        `
+    }
 }
 
 async function deleteTickets() {
-
+    //Variable declaration
+    let delId = nameUpdateSelect2.value;
+    await conn.generalQuey(`DELETE FROM uploaders WHERE uploaderId = ?`, [delId]);
+    alert("Successful operation");
 }
 
 addTicketBtn.addEventListener("click", addTickets);
+deleteTicketBtn.addEventListener("click", deleteTickets);
+nameUpdateSelect.addEventListener("click", updateNames);
+nameUpdateSelect2.addEventListener("click", updateNames2);
