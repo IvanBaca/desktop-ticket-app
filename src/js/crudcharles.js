@@ -36,7 +36,7 @@ async function addTickets() {
         alert("Please fill in every blank...");
     } else {
         //var compid = await conn.generalQuey("SELECT companyid from companies limit 1");
-        var compid = store.get("upId");
+        var compid = store.get("compId");
         ticketsInput.push(compid);
         await conn.generalQuey("INSERT INTO coupons (title, info, restrictions, expiration, discountPercentage, companyid) VALUES (?,?,?,?,?,?)", ticketsInput);
         console.log(ticketsInput)
