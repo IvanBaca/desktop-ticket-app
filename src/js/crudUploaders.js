@@ -8,6 +8,7 @@ var editTicketBtn = document.getElementById("editTicket");
 var deleteTicketBtn = document.getElementById("deleteTicket");
 var nameUpdateSelect = document.getElementById("nameUpdateSelect");
 var nameUpdateSelect2 = document.getElementById("nameUpdateSelect2");
+var logOut = document.getElementById("signout1");
 
 //Test
 console.log(store.get("compId"));
@@ -144,6 +145,10 @@ async function deleteTickets() {
     alert("Successful operation");
 }
 
+async function deleteStore(){
+    store.delete("compid");
+}
+
 fillSelect1();
 updateNames2();
 
@@ -151,3 +156,4 @@ addTicketBtn.addEventListener("click", addTickets);
 editTicketBtn.addEventListener("click", editTickets);
 deleteTicketBtn.addEventListener("click", deleteTickets);
 nameUpdateSelect.addEventListener("click", updateNames);
+logOut.addEventListener("click", deleteStore);

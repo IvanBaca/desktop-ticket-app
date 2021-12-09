@@ -8,6 +8,8 @@ var editTicketBtn = document.getElementById("editTicket");
 var deleteTicketBtn = document.getElementById("deleteTicket");
 var axellDisplay = document.getElementById("Axell");
 var axellDelete = document.getElementById("AxellDelete");
+var logOut = document.getElementById("signout");
+
 var nameEmpty = "";
 var name = "";
 var infor = "";
@@ -156,8 +158,13 @@ async function funcionXavier1(){
     borrar = selectedValue;
 }
 
+async function deleteStore(){
+    store.delete("compid");
+}
+
 addTicketBtn.addEventListener("click", addTickets);
 editTicketBtn.addEventListener("click", editTickets);
 deleteTicketBtn.addEventListener("click", deleteTickets);
 axellDisplay.addEventListener("click",nombre);
-axellDelete.addEventListener("click",nombre); 
+axellDelete.addEventListener("click",nombre);
+logOut.addEventListener("click", deleteStore); 

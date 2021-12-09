@@ -17,9 +17,14 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#">Tickets</a>
-                  <button class="navbar-text" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  </button>
+                  <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                      <a class="nav-link active" aria-current="page" href="crudCharles.html"><h4>Tickets</h4></a>
+                      <a class="nav-link" href="crudUploaders.html"><h4>Uploaders</h4></a>
+                    </div>
+                  </div>
                 </div>
+                <a href="vista.html" id="signout"><button type="button" class="btn btn-danger mx-4" style="width: 6rem;">Sign out</button></a>
               </nav>
         </div>
     </div>
@@ -145,10 +150,7 @@
                 </div>
               </div>
         </div>
-    <!--Para volver a la página principal-->    
-    <div class="row">
-      <a href="ticket-view.html">Volver</a>
-    </div>
+    
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script type="text/javascript" src="./../bootstrap/js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="./../js/crudcharles.js"></script>
