@@ -19,7 +19,7 @@ function createWindow() {
         }
     })
     // window.removeMenu();
-    window.loadFile('./src/html/ticket-view.html');
+    window.loadFile('./src/html/vista.html');
     window.maximize();
 }
 
