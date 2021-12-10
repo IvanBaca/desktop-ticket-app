@@ -10,6 +10,7 @@ var axellDisplay = document.getElementById("Axell");
 var axellDelete = document.getElementById("AxellDelete");
 var logOut = document.getElementById("signout");
 
+var compid = store.get("compId");
 var nameEmpty = "";
 var name = "";
 var infor = "";
@@ -34,19 +35,23 @@ async function addTickets() {
             break;
         } 
     }
-    if (emptyFields) {
-        alert("Please fill in every blank...");
+    if (formFields[4].value>100) {
+        alert("Don´t exceed the maximum percentage");
     } else {
-        //var compid = await conn.generalQuey("SELECT companyid from companies limit 1");
-        var compid = store.get("compId");
-        ticketsInput.push(compid);
-        await conn.generalQuey("INSERT INTO coupons (title, info, restrictions, expiration, discountPercentage, companyid) VALUES (?,?,?,?,?,?)", ticketsInput);
-        console.log(ticketsInput)
-        //Screen clear
-        for (let i = 0; i < 5; i++) {
-            formFields[i].value = "";
+        if (emptyFields) {
+            alert("Please fill in every blank...");
+        } else {
+            //var compid = await conn.generalQuey("SELECT companyid from companies limit 1");
+            var compid = store.get("compId");
+            ticketsInput.push(compid);
+            await conn.generalQuey("INSERT INTO coupons (title, info, restrictions, expiration, discountPercentage, companyid) VALUES (?,?,?,?,?,?)", ticketsInput);
+            console.log(ticketsInput)
+            //Screen clear
+            for (let i = 0; i < 5; i++) {
+                formFields[i].value = "";
+            }
+            alert("Your ticket has been registered");
         }
-        alert("Your ticket has been registered");
     }
 }
 
@@ -111,7 +116,7 @@ async function deleteTickets() {
 async function funcionVer(atsel) {
     let cupon=[];
     var perrito = document.getElementById(atsel);
-    cupon=await conn.generalQuey("select * from coupons where title=?", perrito);
+    cupon=await conn.generalQuey("select * from coupons where title=? and companyId=?", perrito, compid);
     console.log(await conn.generalQuey("select * from coupons"));
     document.getElementById("title").placeholder=cupon[0].title;
     document.getElementById("info").placeholder=cupon[0].info;
@@ -123,7 +128,7 @@ async function funcionVer(atsel) {
 async function nombre(){
     document.getElementById("Axell").innerHTML = '';
     document.getElementById("AxellDelete").innerHTML = '';
-    var values = await conn.generalQuey("select * from coupons");
+    var values = await conn.generalQuey("select * from coupons where companyid=?", compid);
     values.forEach(function(e){
         insertarCoupones(e);
     });
@@ -161,6 +166,7 @@ async function funcionXavier1(){
 async function deleteStore(){
     store.delete("compid");
 }
+
 
 addTicketBtn.addEventListener("click", addTickets);
 editTicketBtn.addEventListener("click", editTickets);
