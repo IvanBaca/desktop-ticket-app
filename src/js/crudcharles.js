@@ -35,8 +35,8 @@ async function addTickets() {
             break;
         } 
     }
-    if (formFields[4].value>100) {
-        alert("Don´t exceed the maximum percentage");
+    if (formFields[4].value>=100 || formFields[4].value<=0) {
+        alert("Insert a valid percentage...");
     } else {
         if (emptyFields) {
             alert("Please fill in every blank...");
@@ -97,15 +97,22 @@ async function editTickets() {
 
     if(formFields[9].value==""){
         porcen=porcenEmpty;
-    } else {
-        porcen=formFields[9].value;
+        ticketsEdit.push(porcen);
+        ticketsEdit.push(nameEmpty);
+        await conn.generalQuey("update coupons set title=?, info=?, restrictions=?, expiration=?, discountPercentage=? where title=?", ticketsEdit);
+        alert("Your ticket has been updated");
         formFields[9].value="";
+    } else if (formFields[9].value>=100 || formFields[9].value<=0) {
+        alert("Insert a valid percentage...");
+        formFields[9].value="";
+    } else if (formFields[9].value>0 && formFields[9].value<100){
+            porcen=formFields[9].value;
+            ticketsEdit.push(porcen);
+            ticketsEdit.push(nameEmpty);
+            await conn.generalQuey("update coupons set title=?, info=?, restrictions=?, expiration=?, discountPercentage=? where title=?", ticketsEdit);
+            alert("Your ticket has been updated");
+            formFields[9].value="";
     }
-    ticketsEdit.push(porcen);
-    ticketsEdit.push(nameEmpty);
-    console.log(ticketsEdit);
-    await conn.generalQuey("update coupons set title=?, info=?, restrictions=?, expiration=?, discountPercentage=? where title=?", ticketsEdit);
-    alert("Your ticket has been updated");
 }
 
 async function deleteTickets() {
